@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f43b40">
+  <title>Caminha+</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="splashScreen" class="screen splash-screen">
+    <div class="splash-card">
+      <div class="app-icon" aria-hidden="true">🚶‍♀️</div>
+      <h1>Caminha+</h1>
+      <p>Controle suas caminhadas</p>
+
+      <button id="enterBtn" class="primary-btn" type="button">
+        Entrar
+      </button>
+    </div>
+  </section>
+
+  <section id="homeScreen" class="screen home-screen hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon">🚶</span>
+        <strong>Caminha+</strong>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="stats-grid" aria-label="Resumo das caminhadas">
+        <article class="stat-card">
+          <span>Distância total</span>
+          <strong id="totalDistance">0,00 km</strong>
+        </article>
+
+        <article class="stat-card">
+          <span>Calorias médias</span>
+          <strong id="averageCalories">0,00 kcal</strong>
+        </article>
+
+        <article class="stat-card">
+          <span>Caminhadas</span>
+          <strong id="totalWalks">0</strong>
+        </article>
+      </section>
+
+      <section class="walks-card">
+        <div class="section-header">
+          <div>
+            <h2>Caminhadas</h2>
+            <p>Clique em uma caminhada para editar.</p>
+          </div>
+
+          <button id="addBtn" class="add-btn" type="button" aria-label="Adicionar caminhada">
+            +
+          </button>
+        </div>
+
+        <div id="walkList" class="walk-list"></div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">🥾</div>
+          <h3>Nenhuma caminhada registrada</h3>
+          <p>Toque no botão + para adicionar sua primeira caminhada.</p>
+        </div>
+      </section>
+    </main>
+  </section>
+  
+  <div
+    id="modalOverlay"
+    class="modal-overlay hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <h2 id="modalTitle">Nova caminhada</h2>
+          <p>Preencha os dados abaixo.</p>
+        </div>
+
+        <button
+          id="closeModal"
+          class="close-btn"
+          type="button"
+          aria-label="Fechar"
+        >
+          ×
+        </button>
+      </div>
+
+      <form id="walkForm">
+        <input type="hidden" id="walkId">
+
+        <div class="form-grid">
+          <label>
+            Data
+            <input id="date" type="date" required>
+          </label>
+
+          <label>
+            Partida
+            <input
+              id="partida"
+              type="text"
+              placeholder="Ex.: Minha casa"
+              required
+            >
+          </label>
+
+          <label>
+            Chegada
+            <input
+              id="chegada"
+              type="text"
+              placeholder="Ex.: Parque"
+              required
+            >
+          </label>
+
+          <label>
+            Distância (km)
+            <input
+              id="distance"
+              type="number"
+              min="0.01"
+              step="0.01"
+              placeholder="0,00"
+              required
+            >
+          </label>
+
+          <label>
+            Peso atual (kg)
+            <input
+              id="weight"
+              type="number"
+              min="1"
+              step="0.1"
+              placeholder="0,0"
+              required
+            >
+          </label>
+        </div>
+
+        <div class="calorie-preview">
+          <span>Gasto calórico estimado</span>
+          <strong id="caloriePreview">0,00 kcal</strong>
+          <small>
+            Fórmula: 0,7 × peso corporal × distância
+          </small>
+        </div>
+
+        <div class="modal-actions">
+          <button
+            id="cancelBtn"
+            class="secondary-btn"
+            type="button"
+          >
+            Cancelar
+          </button>
+
+          <button class="primary-btn" type="submit">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
